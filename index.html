@@ -5,9 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Estación Tenosique</title>
 
-    <!-- ★ Tamaño recomendado para las imágenes del carrusel:
-         1920x650 px para que no pierdan calidad ni se estiren. -->
-
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&family=DM+Serif+Text:ital@0;1&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&display=swap" rel="stylesheet">
@@ -22,19 +19,21 @@
             color: #333;
         }
 
+        /* Estilos de Escritorio */
         .carousel h1 { 
             font-family: "DM Serif Text", serif;
             font-weight: 400;
+            font-style: normal;
             font-size: 70px;
             color: white; 
             text-align: center;
             text-shadow: 2px 2px 8px rgba(0,0,0,0.8);
+            z-index: 2;
             position: absolute;
             left: 50%;
             transform: translateX(-50%);
             top: 40%; 
             width: 90%;
-            z-index: 2;
         }
 
         .carousel p {
@@ -42,21 +41,22 @@
             font-size: 50px;
             color: #D4AF37; 
             text-shadow: 2px 2px 8px rgba(0,0,0,0.8);
+            z-index: 2;
             position: absolute;
             left: 50%;
             transform: translateX(-50%);
             top: 55%;
             width: 90%;
             text-align: center;
-            z-index: 2;
         }
-
+        
         h3 {
             font-family: "Cinzel Decorative", cursive;
             text-align: center;
             color: black; 
             font-size: 2.5em; 
             margin: 30px 0 20px 0; 
+            text-transform: capitalize; 
             letter-spacing: 2px;
             font-weight: 700; 
         }
@@ -64,26 +64,31 @@
         .carousel { 
             position: relative;
             overflow: hidden;
-            height: 650px; /* ideal para imágenes 1920x650 */
+            height: 650px; 
         }
+        
+        /* Por defecto, usamos cover para Escritorio */
         .carousel img {
             width: 100%;
             height: 100%;
-            object-fit: cover; /* evita que se pixelee */
+            object-fit: cover; 
             opacity: 0;
             transition: opacity 1.2s ease-in-out;
             position: absolute;
             top: 0;
             left: 0;
         }
+        
         .carousel img.active {
             opacity: 1;
         }
-
         .carousel::before {
             content: "";
             position: absolute;
-            inset: 0;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             background: rgba(0,0,0,0.5);
             z-index: 1;
         }
@@ -103,9 +108,12 @@
         }
 
         header img {
-            height: 70px;
+            height: 70px; 
+            width: auto;
         }
-
+        header img:nth-child(2) {
+            height: 80px; 
+        }
         .menu-principal {
             text-align: center;
             margin: 20px 0;
@@ -117,6 +125,7 @@
             padding: 15px 30px;
             border-radius: 8px;
             font-size: 18px;
+            margin: 10px;
             transition: 0.3s;
         }
         .menu-principal a:hover {
@@ -124,71 +133,98 @@
             transform: scale(1.05);
         }
 
+        
         .menus {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
             gap: 15px;
             padding: 20px;
+            justify-content: center;
         }
 
         .menus div {
-            background: rgba(255,255,255,0.86);
+            position: relative; 
+            overflow: hidden;
             border-radius: 12px;
-            padding: 20px;
-            text-align: center;
             box-shadow: 0 4px 10px rgba(8, 114, 96, 0.2);
-            transition: 0.3s;
-            position: relative;
-            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease, color 0.3s ease;
+            cursor: pointer; 
+            background: rgba(255, 255, 255, 0.863);
+            text-align: center;
+            padding: 20px;
+            font-family: "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;;
         }
-
         .menus div:hover {
-            transform: scale(1.05);
-            background: #00867b;
-        }
-
-        .menus div strong {
-            font-size: 1.2em;
-            color: #004d40;
-            transition: 0.3s;
-        }
-
-        .menus div:hover strong {
-            color: white;
-        }
-
-        .menus p {
-            font-size: 1em;
-            color: #000;
-            transition: 0.3s;
-        }
-
-        .menus div:hover p {
-            color: white;
+            transform: scale(1.05); 
+            box-shadow: 0 8px 16px rgba(0,0,0,0.3); 
+            background: #00867b; 
         }
 
         .menus div a {
             position: absolute;
-            inset: 0;
-            z-index: 10;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 10; 
             text-decoration: none;
+            display: block;
+            margin: 0;
+            padding: 0;
+            color: transparent !important; 
+            background: transparent !important;
+        }
+
+
+        .menus div strong {
+            font-weight: bold;
+            color: #004d40; 
+            font-size: 1.2em;
+            display: block;
+            margin-bottom: 10px;
+            transition: color 0.3s;
+            text-align: center;
+            position: relative; 
+            z-index: 1; 
+        }
+
+        .menus div:hover strong {
+            color: #000000; 
+        }
+
+
+        .menus p {
+            margin: 5px 0;
+            color: #000000; 
+            text-align: left;
+            position: relative;
+            z-index: 1; 
+            font-size: 1em;
+            transition: color 0.3s;
+        }
+
+        .menus div:hover p {
+            color: #FFFFFF; 
         }
 
         .recomendaciones {
             background: rgba(0,77,64,0.9);
             color: white;
-            text-align: center;
-            padding: 15px;
-            margin: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 20px; 
+            padding: 15px; 
             border-radius: 10px;
+            text-align: center;
         }
-
         .recomendaciones a {
             background: #0ea894b4;
+            color: rgb(255, 255, 255);
+            text-decoration: none;
             padding: 12px 20px;
             border-radius: 8px;
-            color: white;
-            text-decoration: none;
+            margin-top: 10px;
             transition: 0.3s;
         }
         .recomendaciones a:hover {
@@ -198,113 +234,183 @@
 
         footer {
             background: #004d40;
-            padding: 15px;
+            color: rgb(255, 255, 255);
             text-align: center;
+            padding: 15px;
             display: flex;
             justify-content: center;
             gap: 20px;
         }
-
         footer img {
             width: 30px;
-            transition: 0.3s;
+            transition: transform 0.3s;
         }
         footer img:hover {
             transform: scale(1.2);
         }
 
-        /* Responsivo */
-        @media (max-width: 768px) {
-            header img { height: 40px; }
+@media (max-width: 768px) {
+    
+    /* === MODIFICACIÓN CLAVE PARA LA FRANJA DEBAJO DEL CARRUSEL === */
+    header {
+        /* MANTENEMOS: Flexbox para espaciar los logos */
+        display: flex; 
+        align-items: center;
+        /* CORREGIDO: Usamos space-between o space-around para la distribución de logos */
+        justify-content: space-between; /* Asegura que los logos estén en los extremos */
+        
+        padding: 5px 10px;
+        /* CLAVE: Cambiamos de absolute a relative para que no se superponga */
+        position: relative; 
+        top: auto; 
+        /* Hacemos la franja más sólida para que se vea como un bloque */
+        background: rgba(155, 158, 144, 0.9);
+        backdrop-filter: none; 
+    }
+    
+    /* Mantenemos el tamaño de los logos en móvil */
+    header img {
+        height: 40px; 
+    }
+    header img:nth-child(2) {
+        height: 50px; 
+    }
 
-            .carousel { height: 480px; }
-            .carousel h1 { font-size: 38px; top: 25%; }
-            .carousel p { font-size: 20px; top: 40%; }
-        }
+    /* === AJUSTES DEL CARRUSEL Y TÍTULOS (Centrados verticalmente) === */
+    .carousel {
+        height: 200px; 
+        position: relative;
+    }
+    
+    .carousel::before {
+        background: rgba(0,0,0,0.6); 
+        z-index: 1; 
+    }
+    
+    /* Centrado Vertical y Horizontal de H1 */
+    .carousel h1 { 
+        font-size: 28px; 
+        top: 40%; 
+        left: 50%;
+        transform: translate(-50%, -50%); 
+        white-space: normal;
+        line-height: 1.2; 
+    }
+    
+    /* Centrado Vertical y Horizontal de P */
+    .carousel p { 
+        font-size: 16px;
+        left: 50%;
+        transform: translateX(-50%); 
+        top: 55%; 
+    }
+    
+    /* === TÍTULO H3 AJUSTES === */
+    h3 {
+        font-size: 1.8em; 
+        margin: 20px 10px 15px 10px; 
+        padding: 0 10px;
+    }
+
+    /* === MENÚS AJUSTES === */
+    .menus {
+        padding: 10px;
+    }
+    .menus div {
+        min-height: 120px;
+        padding: 15px;
+    }
+    .menus div:hover {
+        transform: scale(1.02); 
+    }
+}
+</style>
     </style>
 </head>
-
 <body>
 
-<header>
-    <img src="https://www.trenmaya.gob.mx/images/Logotipo_TM_H.png">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/Defensa_Logo_%282024%29.png/1200px-Defensa_Logo_%282024%29.png">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/0/06/3_Tenosique.png">
-</header>
+    <header>
+        <img src="https://www.trenmaya.gob.mx/images/Logotipo_TM_H.png" alt="Logo Tren Maya">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/Defensa_Logo_%282024%29.png/1200px-Defensa_Logo_%282024%29.png" alt="Logo SEDENA">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/0/06/3_Tenosique.png" alt="Logo Tenosique">
+    </header>
 
-<section class="carousel">
+    <section class="carousel">
+        <img src="letra_tenosique.jpg" class="active" alt="Tren Maya 1">
+        <img src="TREN.jpeg" alt="Tren Maya 2">
+        <img src="atardecer.png" alt="Tren Maya 3">
+        <img src="Estación Tren Maya en diferentes momentos (1).png" alt="Tren Maya 4">
+        <img src="tren1.jpg" alt="Tren Maya 5">
+        <img src="tren3.jpg" alt="Tren Maya 6">
+    
+        
+        <h1>TREN MAYA</h1>
+        <p>Estación Tenosique</p>
+    </section>
 
-    <!-- ★ IMPORTANT: Usa imágenes 1920x650px -->
-    <img src="letra_tenosique.jpg" class="active">
-    <img src="TREN.jpeg">
-    <img src="atardecer.png">
-    <img src="Estación Tren Maya en diferentes momentos (1).png">
-    <img src="tren1.jpg">
-    <img src="tren3.jpg">
-
-    <h1>TREN MAYA</h1>
-    <p>Estación Tenosique</p>
-</section>
-
-<div class="menu-principal">
-    <a href="conoce.html">Conoce la estación Tenosique aquí</a>
-</div>
-
-<h3>Elige tu tarifa correspondiente</h3>
-
-<section class="menus">
-
-    <div><a href="turista-especial.html"></a>
-        <strong>Turista Especial</strong>
-        <p>Personas con credenciales vigentes: Maestros, Estudiantes, INAPAM, ISSFAM y SEDENA.</p>
+    <div class="menu-principal">
+        <a href="conoce.html">Conoce la estación Tenosique aquí</a>
     </div>
+    <h3>Elige tu tarifa correspondiente</h3>
 
-    <div><a href="turista-local.html"></a>
-        <strong>Turista Local</strong>
-        <p>Personas con INE de: Chiapas, Tabasco, Campeche, Yucatán, Quintana Roo.</p>
-    </div>
+    <section class="menus">
+        <div>
+            <a href="turista-especial.html"></a> 
+            <strong>Turista Especial</strong>
+            <p>Personas que cuenten con credenciales vigentes de: Maestros, Estudiantes, INAPAM, ISSFAM y SEDENA.</p>
+        </div>
+        <div>
+            <a href="turista-local.html"></a> 
+            <strong>Turista Local</strong>
+            <p>Personas que cuenten con INE emitida en los estados de: Chiapas, Tabasco, Campeche, Yucatán, Quintana Roo.</p>
+        </div>
+        <div>
+            <a href="turista_nacional.html"></a> 
+            
+            <strong>Turista Nacional</strong>
+            <p>Personas que cuenten con INE emitida en cualquier otro estado distinto a: Chiapas, Tabasco, Campeche, Yucatán, Quintana Roo.</p>
+        </div>
+        <div>
+            <a href="turista-internacional.html"></a> 
+            <strong>Turista Internacional</strong>
+            <p>Persona con nacionalidad extranjera, que cuenten con Pasaporte o Residencia Permanente vigente.</p>
+        </div>
+        <div>
+            <a href="premier_nacional.html"></a> 
+            <strong>Premier Nacional</strong>
+            <p>Categoría más alta para los mexicanos, con: Servicio de Catering, Asientos más amplios y cómodos.</p>
+        </div>
 
-    <div><a href="turista_nacional.html"></a>
-        <strong>Turista Nacional</strong>
-        <p>INE de cualquier estado fuera del área local.</p>
-    </div>
+        <div>
+            <a href="premier-internacional.html"></a> 
+            <strong>Premier Internacional</strong>
+            <p>Categoría más alta para los extranjeros, con: Servicio de Catering, Asientos más amplios y cómodos.</p>
+        </div>
+    </section>
 
-    <div><a href="turista-internacional.html"></a>
-        <strong>Turista Internacional</strong>
-        <p>Pasaporte o Residencia Permanente vigente.</p>
-    </div>
+    <section class="recomendaciones">
+        <p><strong>Horario de atención:</strong> 7:00 am - 6:00 pm</p>
+        <a href="recomendaciones.html">Conoce las recomendaciones aquí</a>
+    </section>
 
-    <div><a href="premier_nacional.html"></a>
-        <strong>Premier Nacional</strong>
-        <p>Servicio superior con Catering y asientos premium.</p>
-    </div>
+    <footer>
+        <a href="https://www.facebook.com/share/17dLgzXfip/" target="_blank">
+            <img src="https://cdn-icons-png.flaticon.com/512/124/124010.png" alt="Facebook">
+        </a>
+        <a href="https://www.instagram.com/trenmaya_oficial/?igsh=MWh3aDZoZDZlnewsS0NA==" target="_blank">
+            <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram">
+        </a>
+    </footer>
 
-    <div><a href="Premier-Internacional.html"></a>
-        <strong>Premier Internacional</strong>
-        <p>Servicio premium especial para turistas extranjeros.</p>
-    </div>
-
-</section>
-
-<section class="recomendaciones">
-    <p><strong>Horario:</strong> 7:00 am – 6:00 pm</p>
-    <a href="recomendaciones.html">Conoce las recomendaciones aquí</a>
-</section>
-
-<footer>
-    <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/124/124010.png"></a>
-    <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png"></a>
-</footer>
-
-<script>
-    let current = 0;
-    const slides = document.querySelectorAll('.carousel img');
-    setInterval(() => {
-        slides[current].classList.remove('active');
-        current = (current + 1) % slides.length;
-        slides[current].classList.add('active');
-    }, 6000);
-</script>
+    <script>
+        let current = 0;
+        const slides = document.querySelectorAll('.carousel img');
+        setInterval(() => {
+            slides[current].classList.remove('active');
+            current = (current + 1) % slides.length;
+            slides[current].classList.add('active');
+        }, 6000);
+    </script>
 
 </body>
 </html>
